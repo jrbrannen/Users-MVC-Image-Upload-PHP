@@ -9,10 +9,11 @@ $test = new User();
 //     "password" => "wdv441"
 // ));
 
+$password = $test->passTheSalt("wdv441");
+var_dump($password);
 
-
-var_dump($test->verifyUser("wdv441", "wdv441"));
-var_dump($test->userArray);
+// var_dump($test->verifyUser("wdv441", "wdv441"));
+// var_dump($test->userArray);
 
 
 ?>

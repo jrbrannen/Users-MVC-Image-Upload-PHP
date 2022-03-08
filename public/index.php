@@ -3,18 +3,18 @@
     require_once('../inc/User.class.php');
     // create a user object
     $user = new User();
-    // create an user array  
-    // $userArray = array();
+
     // create an error array
     $errorsArray = array();
-    // TO DO sanatize
+
+    // sanatize input
     $requestArray = $user->sanitize($_REQUEST);
         
     if(isset($_POST['Submit'])) {    
         //validate the username and password
         $userName = $requestArray['user_name']; 
         $password = $requestArray['password'];
-
+        $password = $user->passTheSalt($password);
         // set the request array to the user object
         $user->set($requestArray);
 
@@ -24,7 +24,7 @@
                 // start a session and store the user id in the $_SESSION array
                 session_start();
                 $_SESSION['user_id'] = $user->userArray['user_id'];
-                // redirect to article list 
+                // redirect to user list 
                 header("location: user-list.php");
                 exit;
             }else{

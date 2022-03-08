@@ -6,13 +6,23 @@ class User {
     var $errors = array();
 
     var $db = null;
+
     // connect to the db when a new user object is created
     function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=wdv441;charset=utf8', 
             'user', 'wdv441');
     }
+    
+    function checkLogin($userId) {
+        $loggedIn = false;
 
-    // get a list of users as an array    
+        if (!empty($userId)) {
+            $loggedIn = true;
+        }
+        return $loggedIn;
+    }// end of checkLogin()
+
+    // get a list of users as an array   
     function getList() {
         $userList = array();
 
@@ -29,21 +39,7 @@ class User {
         }       
         // return the list of articles
         return $userList;       
-    }
-
-    function set($userArray) {
-        $this->userArray = $userArray;
-    }
-
-    function sanitize($userArray) {
-        if (!empty($userArray['user_name'])){
-            $userArray['user_name'] = filter_var($userArray['user_name'], FILTER_SANITIZE_STRING);
-        }
-        if (!empty($userArray['password'])) {
-            $userArray['password']= filter_var($userArray['password'], FILTER_SANITIZE_STRING);
-        } 
-        return $userArray;
-    }
+    }// end of getList()
 
     function load($id){
 
@@ -69,6 +65,14 @@ class User {
 
         // return load success or failure
         return $isLoaded;
+    }// end of load()
+
+    function passTheSalt($password) {
+        // password salt
+        define("PASSWORD_SALT", "C0dingP#P!sS0S@MuchF()N");
+        // hash password and store in variable
+        $password = hash("sha256", $password . PASSWORD_SALT);
+        return $password;
     }
 
     function save() {
@@ -125,7 +129,21 @@ class User {
         }
         // return success flag
         return $isSaved;
-    }
+    }// end of save()
+
+    function set($userArray) {
+        $this->userArray = $userArray;
+    }// end of set()
+
+    function sanitize($userArray) {
+        if (!empty($userArray['user_name'])){
+            $userArray['user_name'] = filter_var($userArray['user_name'], FILTER_SANITIZE_STRING);
+        }
+        if (!empty($userArray['password'])) {
+            $userArray['password']= filter_var($userArray['password'], FILTER_SANITIZE_STRING);
+        } 
+        return $userArray;
+    }// end of sanitize()
 
     function validate() {
         $isValid = true;
@@ -139,7 +157,7 @@ class User {
             $isValid = false;
         }
         return $isValid;
-    }
+    }// end of validate()
 
     function verifyUser($userName, $password) {
         // set verifiedUser to false, flag tracks to see if user data is loaded
@@ -161,17 +179,7 @@ class User {
         }
 
         return $verifiedUser;
-    }
-
-    function checkLogin($userId) {
-        $loggedIn = false;
-
-        if (!empty($userId)) {
-            $loggedIn = true;
-        }
-        return $loggedIn;
-    }
-
+    }// end of verifyUser()
 }
 
 ?>

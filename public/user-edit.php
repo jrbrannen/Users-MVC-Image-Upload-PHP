@@ -48,7 +48,7 @@ if($user->checkLogin($userId)) {
         }else{
             //errors
             $errorsArray = $user->errors;
-            $dataArray = $user->dataArray;
+            $userArray = $user->userArray;
         }
     }
     // go back to user list view page
