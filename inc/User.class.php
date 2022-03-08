@@ -79,6 +79,9 @@ class User {
         // flag to see if save is successful 
         $isSaved = false;
 
+        // salt the new or updated password
+        $this->userArray['password'] = $this->passTheSalt($this->userArray['password']);
+        
         // determine if save is an insert or an update based of on the user id
         // true condition save data from the (userArray) property to the database
         if (empty($this->userArray['user_id'])){
@@ -95,8 +98,8 @@ class User {
                     $this->userArray['password'],
                     $this->userArray['user_level'],
                     $this->userArray['user_first_name'],
-                    $this->userArray['user_last_name'],
-                    )
+                    $this->userArray['user_last_name']
+                )
             );
 
             // if the execute returns true, then store the new id back into the data property
@@ -111,7 +114,7 @@ class User {
                     user_name = ?,
                     password = ?,
                     user_level = ?,
-                    user_first_name = ?
+                    user_first_name = ?,
                     user_last_name = ?
                 WHERE user_id = ?"
             );
@@ -133,6 +136,7 @@ class User {
 
     function set($userArray) {
         $this->userArray = $userArray;
+        // $this->userArray['password'] = $this->passTheSalt($this->userArray['password']);
     }// end of set()
 
     function sanitize($userArray) {
