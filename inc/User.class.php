@@ -134,6 +134,17 @@ class User {
         return $isSaved;
     }// end of save()
 
+    function saveImage($fileArray) {
+		
+		// var_dump($fileArray);die;
+		
+		if (isset($fileArray['upload_image'])) {
+            // var_dump($fileArray);die;
+			move_uploaded_file($fileArray['upload_image']['tmp_name'], __DIR__ . 
+                '/../public/images/' . $this->userArray['user_id'] . '_user.jpg');
+		}
+	}// end of saveImage()
+
     function set($userArray) {
         $this->userArray = $userArray;
         // $this->userArray['password'] = $this->passTheSalt($this->userArray['password']);

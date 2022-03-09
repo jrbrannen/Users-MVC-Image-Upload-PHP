@@ -33,6 +33,7 @@
                     <td><?= $user['user_level'] ?></td>
                     <td></td>
                     <td><a href="user-edit.php?user_id= <?= $user['user_id'] ?> ">Edit</a></td>
+                    <td><a href="user-view.php?user_id= <?= $user['user_id'] ?> ">View</a></td>
                 </tr>
             </tbody>
             <?php } ?>

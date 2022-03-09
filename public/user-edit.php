@@ -40,7 +40,10 @@ if($user->checkLogin($userId)) {
         if ($user->validate()){
             //save
             if ($user->save()){
-                header("location: ../tpl/user-save-success.tpl.php"); // prevents double posting
+                //save image if uploaded
+                $user->saveImage($_FILES);
+                // redirect and prevent double posting
+                header("location: ../tpl/user-save-success.tpl.php"); 
                 exit;   // ends server processing
             }else{
                 
@@ -53,11 +56,12 @@ if($user->checkLogin($userId)) {
     }
     // go back to user list view page
     if (isset($_POST['Cancel'])) {
-        header("location: index.php");
+        header("location: user-list.php");
         exit;
     }
     // include the view
     require_once('../tpl/user-edit.tpl.php');
+    // require_once('../tpl/file-upload.tpl.php');
 }else{
     $user->errors = "Invalid User";
     header('location: index.php');

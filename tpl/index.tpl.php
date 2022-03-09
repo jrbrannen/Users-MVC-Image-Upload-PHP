@@ -32,7 +32,7 @@
             </p>
             <p>
                 <label>Password:</label>
-                <input type="password" name="password" id="password" value="<?= isset($password) ? $password : '' ?>">
+                <input type="password" name="password" id="password" value="">
             </p>
             <p>
                 <input type="submit" name="Submit" value="Submit"/>

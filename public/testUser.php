@@ -15,5 +15,6 @@ $test = new User();
 // var_dump($test->verifyUser("wdv441", "wdv441"));
 // var_dump($test->userArray);
 
+// var_dump($test->passTheSalt("wdv441"));
 
 ?>
