@@ -13,6 +13,7 @@ class User {
             'user', 'wdv441');
     }
     
+    // uses a session variable id to see if a user is logged in or not
     function checkLogin($userId) {
         $loggedIn = false;
 
@@ -21,6 +22,16 @@ class User {
         }
         return $loggedIn;
     }// end of checkLogin()
+
+    // uses a session variable as a paramenter to check a users level
+    function isAdminLevel($userLevel) {
+        $isAdmin = false;
+
+        if(!empty($userLevel) && $userLevel == "admin") {
+            $isAdmin = true;
+        }
+        return $isAdmin;
+    }
 
     // get a list of users as an array   
     function getList() {

@@ -14,8 +14,12 @@
             <?php } ?>
 
             User Name: <input type="text" name="user_name" value="<?php echo (isset($userArray['user_name']) ? $userArray['user_name'] : ''); ?>"/><br>
-            Password: <input type="password" name="password" value="<?php /* echo (isset($userArray['password']) ? $userArray['password'] : '');*/ ?>" /><br>
-            User Level: <input type="text" name="user_level" value="<?php echo (isset($userArray['user_level']) ? $userArray['user_level'] : ''); ?>"/><br>
+            Password: <input type="password" name="password" value="" /><br>
+            User Level: <select name="user_level">
+                            <option value="">Select One</option>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select></br>
             First Name: <input type="text" name="user_first_name" value="<?php echo (isset($userArray['user_first_name']) ? $userArray['user_first_name'] : ''); ?>"/><br>
             Last Name: <input type="text" name="user_last_name" value="<?php echo (isset($userArray['user_last_name']) ? $userArray['user_last_name'] : ''); ?>"/><br>
             Upload file: <input type="file" name="upload_image"/><br>

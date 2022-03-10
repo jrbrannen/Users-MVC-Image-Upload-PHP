@@ -24,7 +24,9 @@
                 // start a session and store the user id in the $_SESSION array
                 session_start();
                 $_SESSION['user_id'] = $user->userArray['user_id'];
-                // redirect to user list 
+                // store the user level in the $_SESSION array
+                $_SESSION['user_level'] = $user->userArray['user_level'];
+                // redirect to user list
                 header("location: user-list.php");
                 exit;
             }else{
